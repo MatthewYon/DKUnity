@@ -9,9 +9,9 @@ public class CameraScript : MonoBehaviour
     private Vector3 _cameraOffset;
 
     [Range(0.1f, 1.0f)]
-    public float SmoothFactor = 0.5f;
+    public float SmoothFactor = 1.0f;
 
-    public bool LookAtPlayer = true;
+    public bool LookAtPlayer = false;
 
     public bool RotateAroundPlayer = true;
 
