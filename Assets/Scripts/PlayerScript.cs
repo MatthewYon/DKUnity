@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int HealtMax = 50;
-    public int Health = 50;
-    public int level = 1;
-    public int exp;
-    public int current_aim_exp = 10;
+    [SerializeField] private int HealthMax = 50;
+    [SerializeField] private int Health = 50;
+    [SerializeField] private int level = 1;
+    [SerializeField] private int exp;
+    [SerializeField] private int current_aim_exp = 10;
     private Rigidbody rb;
     private Animator anim;
+    private AudioSource audioSource;
     private bool isGrounded = true;
-    public float playerSpeed = 10.0f;
-    public float maxSpeed = 100;
-    public float jumpForce = 10.0f;
+    [SerializeField] private float playerSpeed = 10.0f;
+    [SerializeField] private float maxSpeed = 100;
+    [SerializeField] private float jumpForce = 10.0f;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -42,7 +45,6 @@ public class PlayerScript : MonoBehaviour
         {
             anim.ResetTrigger("isIdling");
             anim.SetTrigger("isWalking");
-
             Vector3 targetDirection = new Vector3(moveHorizontal, 0f, moveVertical);
             targetDirection = Camera.main.transform.TransformDirection(targetDirection);
             targetDirection.y = 0.0f;
@@ -78,17 +80,30 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+
         if (col.gameObject.tag == ("Ground") && isGrounded == false)
         {
             isGrounded = true;
             anim.ResetTrigger("isJumping");
+        }
+
+
+
+        if (col.gameObject.tag == "Collide")
+        {
+            Collider myCollider = col.contacts[0].thisCollider;
+            if(myCollider.gameObject.GetComponent<MeshCollider>() == gameObject.GetComponentInChildren<MeshCollider>())
+            {
+                LevelUp();
+            }
         }
     }
 
     private void LevelUp()
     {
         exp -= current_aim_exp;
-        HealtMax += 10;
+        HealthMax += 10;
+        Health = HealthMax;
         ++level;
         current_aim_exp += (current_aim_exp / 4);
     }

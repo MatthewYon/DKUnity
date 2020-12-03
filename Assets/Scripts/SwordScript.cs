@@ -15,13 +15,4 @@ public class SwordScript : MonoBehaviour
     {
         
     }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if(col.tag == "Collide")
-        {
-            Destroy(col.gameObject);
-            gameObject.GetComponentInParent<PlayerScript>().exp += 10;
-        }
-    }
 }

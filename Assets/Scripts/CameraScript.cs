@@ -30,7 +30,7 @@ public class CameraScript : MonoBehaviour
             if (RotateAroundPlayer)
             {
                 Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotationsSpeed, Vector3.up);
-            
+             
                 _cameraOffset = camTurnAngle * _cameraOffset;
             }
             
