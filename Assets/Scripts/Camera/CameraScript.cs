@@ -40,6 +40,6 @@ public class CameraScript : MonoBehaviour
 
         transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
         if (LookAtPlayer || RotateAroundPlayer) 
-            transform.LookAt(PlayerTransform);
+            transform.LookAt(new Vector3(PlayerTransform.position.x, PlayerTransform.position.y+2, PlayerTransform.position.z));
     }
 }
