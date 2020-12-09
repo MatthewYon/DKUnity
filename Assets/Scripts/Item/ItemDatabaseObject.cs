@@ -5,20 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item Database", menuName = "Inventory System/Items/Database")]
 public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField] private ItemObject[] Items;
-    public Dictionary<int, ItemObject> GetItem = new Dictionary<int, ItemObject>();
+    public ItemObject[] Items;
 
-    public void OnAfterDeserialize()
+    [ContextMenu("Update ID's")]
+    public void UpdateID()
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Items[i].Id = i;
-            GetItem.Add(i, Items[i]);
+            if(Items[i].data.Id != i)
+                Items[i].data.Id = i;
         }
+    }
+    public void OnAfterDeserialize()
+    {
+        UpdateID();
     }
 
     public void OnBeforeSerialize()
     {
-        GetItem = new Dictionary<int, ItemObject>();
     }
 }

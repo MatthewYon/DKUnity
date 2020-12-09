@@ -5,7 +5,11 @@ using UnityEngine;
 public enum ItemType
 {
     Food,
-    Equipment,
+    Helmet,
+    Weapon,
+    Shield,
+    Boots,
+    Chest,
     Default
 }
 
@@ -16,14 +20,15 @@ public enum Attributes
     Stamina,
     Strength
 }
-public abstract class ItemObject : ScriptableObject
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Items/Item")]
+public class ItemObject : ScriptableObject
 {
-    public int Id;
     public Sprite uiDisplay;
+    public bool stackable;
     public ItemType type;
     [TextArea(15,20)]
     public string description;
-    public ItemBuff[] buffs;
+    public Item data = new Item();
 
     public Item CreateItem()
     {

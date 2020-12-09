@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3092ba28049f1ff4ab9e38770fd6520e, type: 3}
-  m_Name: Monkfish
+  m_Script: {fileID: 11500000, guid: 357551f64990503419cdd975687dae24, type: 3}
+  m_Name: Chestplate
   m_EditorClassIdentifier: 
-  Id: 0
-  uiDisplay: {fileID: -1017397855643254206, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
-  type: 0
+  uiDisplay: {fileID: 625480778395568090, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
+  stackable: 0
+  type: 5
   description: 
-  buffs: []
+  data:
+    Name: 
+    Id: 2
+    buffs: []

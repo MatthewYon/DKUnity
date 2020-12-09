@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        anim.ResetTrigger("isAttacking");
 
         if (moveHorizontal == 0 && moveVertical == 0 && isGrounded)
         {
@@ -46,7 +45,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            Attack();
+            BeginAttack();
         }
 
     }
@@ -77,12 +76,6 @@ public class Movement : MonoBehaviour
         isGrounded = false;
     }
 
-    private void Attack()
-    {
-        anim.ResetTrigger("isWalking");
-        anim.ResetTrigger("isIdling");
-        anim.SetTrigger("isAttacking");
-    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -94,5 +87,10 @@ public class Movement : MonoBehaviour
         }
     }
 
-    
+    private void BeginAttack()
+    {
+        anim.ResetTrigger("isWalking");
+        anim.ResetTrigger("isIdling");
+        anim.SetTrigger("isAttacking");
+    }    
 }
