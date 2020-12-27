@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class OldMovement : MonoBehaviour
 {
     private Rigidbody rb;
     private Animator anim;
@@ -10,24 +11,30 @@ public class Movement : MonoBehaviour
     [SerializeField] private float playerSpeed = 10.0f;
     [SerializeField] private float maxSpeed = 100;
     [SerializeField] private float jumpForce = 10.0f;
+    private PlayerActionsInputs playerActions;
+    private float moveHorizontal;
+    private float moveVertical;
+    private float jump;
+    private float attack;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        isGrounded = true;
+        moveHorizontal = 0;
+        moveVertical = 0;
     }
 
     private void Update()
     {
-        
+        jump = playerActions.Player.Move.ReadValue<float>();
+        attack = playerActions.Player.Skill.ReadValue<float>();
     }
 
     private void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        if (moveHorizontal == 0 && moveVertical == 0 && isGrounded)
+        if (Mathf.Approximately(moveHorizontal,0) && Mathf.Approximately(moveVertical,0) && isGrounded)
         {
             anim.ResetTrigger("isWalking");
             anim.SetTrigger("isIdling");
@@ -36,21 +43,21 @@ public class Movement : MonoBehaviour
         {
             anim.ResetTrigger("isIdling");
             anim.SetTrigger("isWalking");
-            Moves(moveHorizontal, moveVertical);
+            Moves();
         }
-        if (Input.GetKey("space") && isGrounded)
+        if (jump > 1 && isGrounded)
         {
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (attack > 1)
         {
             BeginAttack();
         }
 
     }
 
-    private void Moves(float moveHorizontal, float moveVertical)
+    public void Moves()
     {
         Vector3 targetDirection = new Vector3(moveHorizontal, 0f, moveVertical);
         targetDirection = Camera.main.transform.TransformDirection(targetDirection);
@@ -87,6 +94,12 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void OnMove(InputValue value)
+    {
+        moveHorizontal = value.Get<Vector2>().x;
+        moveVertical = value.Get<Vector2>().y;
+    }
+
     private void BeginAttack()
     {
         anim.ResetTrigger("isWalking");
@@ -94,3 +107,4 @@ public class Movement : MonoBehaviour
         anim.SetTrigger("isAttacking");
     }    
 }
+*/

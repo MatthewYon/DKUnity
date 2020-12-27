@@ -17,7 +17,6 @@ public class CameraScript : MonoBehaviour
 
     public float RotationsSpeed = 5.0f;
 
-
     void Start()
     {
         _cameraOffset = transform.position - PlayerTransform.position;

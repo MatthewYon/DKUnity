@@ -1,31 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class DisplayPanels : MonoBehaviour
 {
    
-    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject InventoryPanel;
+    [SerializeField] private GameObject EquipmentPanel;
     private int counter = 0;
+
     // Start is called before the first frame update
     private void Start()
     {
-        panel.SetActive(false);
+        InventoryPanel.SetActive(false);
+        EquipmentPanel.SetActive(false);
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-            showHidePanel();
-    }
-
-    private void showHidePanel()
+    public void showHidePanel()
     {
         if (counter % 2 == 1)
-            panel.SetActive(false);
+        {
+            InventoryPanel.SetActive(false);
+            EquipmentPanel.SetActive(false);
+        }
         else
-            panel.SetActive(true);
+        {
+            InventoryPanel.SetActive(true);
+            EquipmentPanel.SetActive(true);
+        }
         counter++;
     }
 }

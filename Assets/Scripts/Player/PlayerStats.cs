@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int HealthMax = 50;
-    [SerializeField] private int Health;
+    [SerializeField] private int healthMax = 50;
+    [SerializeField] private int health;
     [SerializeField] private int level = 1;
     [SerializeField] private int exp;
-    [SerializeField] private int current_aim_exp = 10;
+    [SerializeField] private int currentAimExp = 10;
+    [SerializeField] private int healthPerLevel = 10;
 
     public int getHealth()
     {
-        return Health;
+        return health;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (exp >= current_aim_exp)
+        if (exp >= currentAimExp)
             LevelUp();
     }
 
 
     private void Death()
     {
-        if(Health == 0)
+        if(health == 0)
         {
 
         }
@@ -33,10 +34,10 @@ public class PlayerStats : MonoBehaviour
 
     private void LevelUp()
     {
-        exp -= current_aim_exp;
-        HealthMax += 10;
-        Health = HealthMax;
+        exp -= currentAimExp;
+        healthMax += healthPerLevel;
+        health = healthMax;
         ++level;
-        current_aim_exp += (current_aim_exp / 4);
+        currentAimExp += (currentAimExp / 4);
     }
 }
