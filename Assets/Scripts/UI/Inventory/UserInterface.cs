@@ -5,12 +5,32 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public abstract class UserInterface : MonoBehaviour
 {
     public InventoryObject inventory;
+    private Vector3 mousePosition;
+    private PlayerInputActions playerInput;
 
     protected Dictionary<GameObject, InventorySlot> slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
+
+    private void Awake()
+    {
+        playerInput = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,9 +120,10 @@ public abstract class UserInterface : MonoBehaviour
     {
         if (MouseData.tempItemBeingDragged != null)
         {
-            MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
+            MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = playerInput.UI.Point.ReadValue<Vector2>();
         }
     }
+
 }
 
 

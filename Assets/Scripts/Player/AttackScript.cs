@@ -8,7 +8,14 @@ public class AttackScript : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+    }
+
+    public void OnAttack()
+    {
+        anim.ResetTrigger("isWalking");
+        anim.ResetTrigger("isIdling");
+        anim.SetTrigger("isAttacking");
     }
 
     private void EndAttack()

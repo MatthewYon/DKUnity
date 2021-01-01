@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int healthMax = 50;
     [SerializeField] private int health;
     [SerializeField] private int level = 1;
-    [SerializeField] private int exp;
+    [SerializeField] private int exp = 0;
     [SerializeField] private int currentAimExp = 10;
     [SerializeField] private int healthPerLevel = 10;
 
@@ -19,8 +19,10 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (exp >= currentAimExp)
+        if(currentAimExp == exp)
+        {
             LevelUp();
+        }
     }
 
 
@@ -38,6 +40,6 @@ public class PlayerStats : MonoBehaviour
         healthMax += healthPerLevel;
         health = healthMax;
         ++level;
-        currentAimExp += (currentAimExp / 4);
+        currentAimExp *= (currentAimExp / 4);
     }
 }

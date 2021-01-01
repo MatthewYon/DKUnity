@@ -2,30 +2,12 @@
 
 public class DisplayPanels : MonoBehaviour
 {
-   
-    [SerializeField] private GameObject InventoryPanel;
-    [SerializeField] private GameObject EquipmentPanel;
-    private int counter = 0;
+    [SerializeField] private GameObject canvas;
 
-    // Start is called before the first frame update
-    private void Start()
+    public void OnInventory()
     {
-        InventoryPanel.SetActive(false);
-        EquipmentPanel.SetActive(false);
+        canvas.SetActive(!canvas.activeSelf);
+
     }
-    // Update is called once per frame
-    public void showHidePanel()
-    {
-        if (counter % 2 == 1)
-        {
-            InventoryPanel.SetActive(false);
-            EquipmentPanel.SetActive(false);
-        }
-        else
-        {
-            InventoryPanel.SetActive(true);
-            EquipmentPanel.SetActive(true);
-        }
-        counter++;
-    }
+
 }
