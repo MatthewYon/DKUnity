@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-
-    [SerializeField] private Camera _camera;
     private void LateUpdate()
     {
-        transform.forward = _camera.transform.forward;
+        transform.forward = Camera.main.transform.forward;
     }
 }

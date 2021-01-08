@@ -10,4 +10,7 @@ public class AttackPlayer : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
+
+
+
 }

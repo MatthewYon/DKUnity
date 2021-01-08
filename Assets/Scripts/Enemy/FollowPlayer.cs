@@ -5,10 +5,8 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private BoxCollider playerBox;
     [SerializeField] private float speed;
     private Animator anim;
-    private Vector3 movement;
     private bool isNear = false;
     // Start is called before the first frame update
     void Start()
@@ -23,8 +21,6 @@ public class FollowPlayer : MonoBehaviour
         anim.ResetTrigger("isWalking");
         anim.SetTrigger("isIdling");
         Vector3 direction = player.position - transform.position;
-        transform.LookAt(player.position);
-        movement = direction;
         if (!isNear)
         {
             anim.ResetTrigger("isIdling");
