@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class ScriptableStats : ScriptableObject
 {
+    public int maxHealth;
     public int health;
     public int attack;
     public int defense;

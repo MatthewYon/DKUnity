@@ -6,7 +6,6 @@ public class AttackScript : MonoBehaviour
 {
     private Animator anim;
     [SerializeField] int hitRange = 1;
-    private bool isAttacking = false;
 
     private void Awake()
     {
@@ -15,25 +14,7 @@ public class AttackScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isAttacking)
-        {
-            int layerMask = 1 << 8;
-
-            layerMask = ~layerMask;
-
-            RaycastHit hit;
-            Vector3 origin = transform.position;
-
-            if (Physics.Raycast(origin, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
-            {
-                Debug.DrawLine(transform.position, hit.transform.position, Color.red);
-                if (hit.transform.gameObject.tag == "Enemy")
-                {
-                    hit.transform.gameObject.SendMessage("TakeDamage", 30);
-                    Debug.Log("HELLOTHERE");
-                }
-            }
-        }
+        
     }
 
 
@@ -43,12 +24,28 @@ public class AttackScript : MonoBehaviour
         anim.ResetTrigger("isIdling");
         anim.SetTrigger("isAttacking");
 
-        isAttacking = true;
+        
+        int layerMask = 1 << 8;
+
+        layerMask = ~layerMask;
+
+        RaycastHit hit;
+        Vector3 origin = transform.position;
+        origin.y += 2;
+
+        if (Physics.Raycast(origin, transform.TransformDirection(Vector3.forward), out hit, hitRange, layerMask))
+        {
+            Debug.DrawLine(origin, hit.transform.position, Color.red);
+            if (hit.transform.gameObject.tag == "Enemy")
+            {
+                hit.transform.gameObject.SendMessage("TakeDamage", 30);
+            }
+        }
+        
     }
 
     private void EndAttack()
     {
         anim.ResetTrigger("isAttacking");
-        isAttacking = false;
     }
 }

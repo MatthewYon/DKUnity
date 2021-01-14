@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661cdae5a4841ef40b52dfa5031a5f91, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
+  maxHealth: 1000
   health: 1000
   attack: 15
   defense: 20

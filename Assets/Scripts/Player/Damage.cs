@@ -6,12 +6,16 @@ public class Damage : MonoBehaviour
 {
     private BoxCollider bc;
     private Animator anim;
+
+    [SerializeField] private HealthBar healthBar;
+
     [SerializeField] ScriptableStats playerStats;
     // Start is called before the first frame update
     void Start()
     {
         bc = GetComponentInChildren<BoxCollider>();
         anim = GetComponentInChildren<Animator>();
+        healthBar.SetMaxHealth(playerStats.maxHealth);
     }
 
     // Update is called once per frame
@@ -20,9 +24,9 @@ public class Damage : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void TakeDamage(int damage)
     {
-        if(collision.collider.CompareTag("Enemy"))
-            playerStats.health -= 150;
+        playerStats.health -= damage;
+        healthBar.SetHealth(playerStats.health);
     }
 }

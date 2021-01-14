@@ -2,12 +2,19 @@
 
 public class DisplayPanels : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject EquiScreen;
+    [SerializeField] private GameObject InvScreen;
+
+    private void Awake()
+    {
+        EquiScreen.SetActive(false);
+        InvScreen.SetActive(false);
+    }
 
     public void OnInventory()
     {
-        canvas.SetActive(!canvas.activeSelf);
-
+        EquiScreen.SetActive(!EquiScreen.activeSelf);
+        InvScreen.SetActive(!InvScreen.activeSelf);
     }
 
 }
