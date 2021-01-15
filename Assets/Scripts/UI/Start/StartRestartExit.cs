@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Restart : MonoBehaviour
+public class StartRestartExit : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -20,5 +20,15 @@ public class Restart : MonoBehaviour
     public void Reload()
     {
         SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+    }
+
+    public void Launch()
+    {
+        SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

@@ -4,6 +4,7 @@ public class DisplayPanels : MonoBehaviour
 {
     [SerializeField] private GameObject EquiScreen;
     [SerializeField] private GameObject InvScreen;
+    [SerializeField] private GameObject Menu;
 
     private void Awake()
     {
@@ -17,4 +18,8 @@ public class DisplayPanels : MonoBehaviour
         InvScreen.SetActive(!InvScreen.activeSelf);
     }
 
+    public void OnMenu()
+    {
+        Menu.SetActive(!Menu.activeSelf);
+    }
 }
